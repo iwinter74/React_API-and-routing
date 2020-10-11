@@ -9,16 +9,16 @@ import BeerItem from './BeerItem';
 
 
 class RandomBeer extends Component {
-    state = { 
+    state = {
         data: [],
         j: 0,
         isLoaded: false
-     
+
     }
     componentDidMount() {
         fetch(`https://ih-beers-api2.herokuapp.com/beers`)
             .then(response => response.json())
-          
+
             .then(json => {
                 console.log(json)
                 this.setState({ data: json }, () => {
@@ -31,42 +31,41 @@ class RandomBeer extends Component {
                         console.log(this.state.j)
                         console.log(this.state.data[this.state.j].image_url)
                         console.log(this.state.data[this.state.j].name)
-                        this.setState({ isLoaded: true  });
+                        this.setState({ isLoaded: true });
                     });
-            
-                  
+
+
                 });
-                
-               
+
+
             })
-            
-    
+
+
 
     }
 
-    // function Rand(NewDictionary){
-    //     const keys = Object.keys(NewDictionary);
-    //     let i = keys.length - 1;
-    //     const j = Math.floor(Math.random() * i);
-    //     return NewDictionary[keys[j]];
-    //   }
 
-    render() { 
+    render() {
         return (
             <div>
-                {this.state.isLoaded?    <BeerItem
-                    name={this.state.data[this.state.j].name}
-                    tagline={this.state.data[this.state.j].tagline}
-                    image_url={this.state.data[this.state.j].image_url}
-                    first_brewed={this.state.data[this.state.j].first_brewed}
-                    attenuation_level={this.state.data[this.state.j].attenuation_level}
-                    description={this.state.data[this.state.j].description}
-                    contributed_by={this.state.data[this.state.j].contributed_by}
-                    
-                />  : "Is loading"}
-          
-        </div>  );
+                <Link to="/">
+                    <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Facebook_Home_logo.svg/1200px-Facebook_Home_logo.svg.png" alt="" />
+                </Link>
+                <div class="randomBeer">
+                    {this.state.isLoaded ? <BeerItem
+                        name={this.state.data[this.state.j].name}
+                        tagline={this.state.data[this.state.j].tagline}
+                        image_url={this.state.data[this.state.j].image_url}
+                        first_brewed={this.state.data[this.state.j].first_brewed}
+                        attenuation_level={this.state.data[this.state.j].attenuation_level}
+                        description={this.state.data[this.state.j].description}
+                        contributed_by={this.state.data[this.state.j].contributed_by}
+
+                    /> : "Is loading"}
+                </div>
+
+            </div>);
     }
 }
- 
+
 export default RandomBeer;

@@ -21,7 +21,7 @@ class BeerDetails extends Component {
                 newArr.push(json)
                 this.setState({ dataDetails: newArr }, () => {
                     data = this.state.dataDetails.map((elem) =>
-                        <article className="detailsArticle" key={elem._id}>
+                        <article className="detailsBeer" key={elem._id}>
                             <img src={elem.image_url} alt=""></img>
                             <h3>{elem.name}</h3>
                             <p>{elem.tagline}</p>
@@ -39,7 +39,9 @@ class BeerDetails extends Component {
         return (
             <div>
                 <header>
-                    <Link className="link-home" to="/"><i class="fas fa-home"></i></Link>
+                    <Link to="/">
+                        <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Facebook_Home_logo.svg/1200px-Facebook_Home_logo.svg.png" alt="" />
+                    </Link>
                 </header>
                 {this.state.isLoaded ? data : 'Is loading'}
             </div>
